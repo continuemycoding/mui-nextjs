@@ -143,7 +143,7 @@ const SigninFirebase = () => {
         </Formik>
       </Box>
 
-      <Box
+      {/* <Box
         sx={{
           color: 'grey.500',
           mb: {xs: 5, md: 7},
@@ -155,12 +155,11 @@ const SigninFirebase = () => {
         <Box
           component='span'
           sx={{
+            color: (theme) => theme.palette.primary.main,
             fontWeight: Fonts.MEDIUM,
-            '& a': {
-              color: (theme) => theme.palette.primary.main,
-              textDecoration: 'none',
-            },
+            cursor: 'pointer'
           }}
+          onClick={()=>{alert("暂不支持");}}
         >
           <Link href='/signup'>
             <IntlMessages id='common.signup' />
@@ -235,7 +234,7 @@ const SigninFirebase = () => {
             <AiOutlineTwitter />
           </IconButton>
         </Box>
-      </Box>
+      </Box> */}
 
       <AppInfoView />
     </Box>
