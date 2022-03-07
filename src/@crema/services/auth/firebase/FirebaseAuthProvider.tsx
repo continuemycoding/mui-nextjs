@@ -9,7 +9,6 @@ import {
 } from './firebase';
 import {AuthUser} from '../../../../types/models/AuthUser';
 import {fetchError, fetchStart, fetchSuccess} from '../../../../redux/actions';
-import {defaultUser} from '../../../../shared/constants/AppConst';
 
 interface FirebaseContextProps {
   user: AuthUser | null | undefined;
@@ -59,7 +58,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
   children,
 }) => {
   const [firebaseData, setFirebaseData] = useState<FirebaseContextProps>({
-    user: defaultUser,
+    user: null,
     isLoading: false,
     isAuthenticated: true,
   });
@@ -115,6 +114,8 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
   };
 
   const signInWithPopup = async (providerName: string) => {
+    console.log("signInWithPopup", providerName);
+
     dispatch(fetchStart());
     try {
       const {user} = await auth.signInWithPopup(getProvider(providerName));
@@ -135,6 +136,8 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
   };
 
   const signInWithEmailAndPassword = async ({email, password}: SignInProps) => {
+    console.log("signInWithEmailAndPassword", email, password);
+
     console.log('1');
     dispatch(fetchStart());
     console.log('2');
@@ -156,12 +159,13 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
       dispatch(fetchError(message as string));
     }
   };
+
   const createUserWithEmailAndPassword = async ({
     name,
     email,
     password,
   }: SignUpProps) => {
-    console.log('name, email, password', name, email, password);
+    console.log('createUserWithEmailAndPassword', name, email, password);
     dispatch(fetchStart());
     try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
@@ -189,6 +193,8 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
   };
 
   const logout = async () => {
+    console.log("logout");
+
     setFirebaseData({...firebaseData, isLoading: true});
     try {
       await auth.signOut();
