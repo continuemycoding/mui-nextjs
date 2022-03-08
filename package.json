@@ -36,6 +36,7 @@
     "formik-material-ui-pickers": "^1.0.0-alpha.1",
     "material-ui-popup-state": "^2.0.0",
     "moment": "^2.29.1",
+    "mysql": "^2.18.1",
     "next": "latest",
     "next-transpile-modules": "^9.0.0",
     "notistack": "^2.0.3",
