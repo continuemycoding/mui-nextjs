@@ -17,6 +17,8 @@ import '../@crema/services/index';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../public/assets/styles/index.css';
 import '../shared/vendors/index.css';
+import { SnackbarProvider } from 'notistack';
+import Zoom from '@mui/material/Zoom';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -35,21 +37,24 @@ export default function MyApp(props: MyAppProps) {
         <title>Crema material</title>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
+      
       <AppContextProvider>
-        <Provider store={store}>
-          <AppThemeProvider>
-            <AppStyleProvider>
-              <AppLocaleProvider>
-                <FirebaseAuthProvider>
-                  <AuthRoutes>
-                    <CssBaseline />
-                    <Component {...pageProps} />
-                  </AuthRoutes>
-                </FirebaseAuthProvider>
-              </AppLocaleProvider>
-            </AppStyleProvider>
-          </AppThemeProvider>
-        </Provider>
+        <SnackbarProvider maxSnack={3} autoHideDuration={5000} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} TransitionComponent={Zoom}>
+          <Provider store={store}>
+            <AppThemeProvider>
+              <AppStyleProvider>
+                <AppLocaleProvider>
+                  <FirebaseAuthProvider>
+                    <AuthRoutes>
+                      <CssBaseline />
+                      <Component {...pageProps} />
+                    </AuthRoutes>
+                  </FirebaseAuthProvider>
+                </AppLocaleProvider>
+              </AppStyleProvider>
+            </AppThemeProvider>
+          </Provider>
+        </SnackbarProvider>
       </AppContextProvider>
     </CacheProvider>
   );
