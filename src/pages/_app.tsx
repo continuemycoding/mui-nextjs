@@ -18,7 +18,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../public/assets/styles/index.css';
 import '../shared/vendors/index.css';
 import { SnackbarProvider } from 'notistack';
-import Zoom from '@mui/material/Zoom';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,7 +38,7 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       
       <AppContextProvider>
-        <SnackbarProvider maxSnack={3} autoHideDuration={5000} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} TransitionComponent={Zoom}>
+        <SnackbarProvider maxSnack={3} autoHideDuration={5000} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
           <Provider store={store}>
             <AppThemeProvider>
               <AppStyleProvider>
